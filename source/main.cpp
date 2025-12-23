@@ -55,9 +55,6 @@ int main(void)
 
 	while (1)
     {
-        // Scan inputs from the console
-        scanKeys();
-
         // DEBUG: Left Pressing
         if (DesignTool_Inputs_Pressed(KEY_LEFT))
         {
@@ -69,9 +66,8 @@ int main(void)
             iprintf("Left pressed:\n");
             iprintf(std::string(std::to_string(DesignTool_Menu_Pattern_Selected) + "\n").c_str());
         }
-
         // DEBUG: Right Pressing
-        if (DesignTool_Inputs_Pressed(KEY_RIGHT))
+        else if (DesignTool_Inputs_Pressed(KEY_RIGHT))
         {
             DesignTool_Menu_Pattern_Selected = DesignTool_Menu_Pattern_Selected + 1;
             if (DesignTool_Menu_Pattern_Selected > DesignTool_Menu_Pattern_Max)
@@ -81,6 +77,9 @@ int main(void)
             iprintf("Right pressed:\n");
             iprintf(std::string(std::to_string(DesignTool_Menu_Pattern_Selected) + "\n").c_str());
         }
+
+        // Scan inputs from the console
+        scanKeys();
 
 		VBlankIntrWait();
 	}

@@ -1,0 +1,3 @@
+[submodule "libs/butano"]
+	path = libs/butano
+	url = https://github.com/GValiente/butano
