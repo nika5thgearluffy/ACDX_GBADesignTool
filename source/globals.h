@@ -1,39 +1,26 @@
 #pragma once
 
-#include <gba_input.h>
+#include "bn_core.h"
+#include "bn_color.h"
 
-// -- GBA input functions --
+// --FUNCTIONS--
 
-// Is a key pressed?
-static bool DesignTool_Inputs_Pressed(u32 key)
+// That way, 0xFF/255 can be used for white and etc.
+static bn::color DesignTool_ColorSwatch(int red, int blue, int green)
 {
-    bool is_down = (keysDown() & key);
-    bool was_down = (keysUp() & key);
-
-    return is_down && !was_down;
+    return bn::color(red / 8, blue / 8, green / 8);
 }
 
-// Is a key held?
-static bool DesignTool_Inputs_Held(u32 key)
-{
-    bool is_down = (keysDownRepeat() & key);
-    return is_down;
-}
+// --VARIABLES--
 
-// Is a key NOT held?
-static bool DesignTool_Inputs_Released(u32 key)
-{
-    bool is_down = (keysDown() & key);
-    bool was_down = (keysUp() & key);
+// Design that's selected on the pattern menu. From 1 up to 8.
+static int DesignTool_Menu_Pattern_Selected = 1;
 
-    return !is_down && was_down;
-}
-
-// Design that's selected on the patterm menu. From 1 up to 8.
-static unsigned int DesignTool_Menu_Pattern_Selected = 1;
+// Page on the pattern menu.
+static int DesignTool_Menu_Pattern_Selected_Page = 1;
 
 // The max count of patterns to show/store/transmit.
-static unsigned int DesignTool_Menu_Pattern_Max = 8;
+static int DesignTool_Menu_Pattern_Max = 8;
 
 /*
     Current menu.
@@ -42,4 +29,7 @@ static unsigned int DesignTool_Menu_Pattern_Max = 8;
     2 = Pattern Editor
     3 = Name Pattern
 */
-static unsigned int DesignTool_Menu_State = 1;
+static int DesignTool_Menu_State = 1;
+
+// If true, the design tool is animating something
+static bool DesignTool_Menu_IsAnimating = false;
