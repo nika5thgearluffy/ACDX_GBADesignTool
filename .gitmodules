@@ -1,3 +1,6 @@
 [submodule "libs/butano"]
 	path = libs/butano
 	url = https://github.com/GValiente/butano
+[submodule "libs/gba-link-connection"]
+	path = libs/gba-link-connection
+	url = https://github.com/afska/gba-link-connection

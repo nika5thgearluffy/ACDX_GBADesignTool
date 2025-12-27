@@ -17,6 +17,9 @@
 #include "bn_sprites.h"
 #include "bn_sprite_tiles.h"
 #include "bn_sprite_ptr.h"
+#include "bn_sprite_animate_actions.h"
+#include "bn_sprite_tiles.h"
+#include "bn_sprite_tiles_item.h"
 
 #include "bn_sprite_items_patternmenu_handcursor.h"
 #include "bn_sprite_items_patternmenu_selectedpattern.h"
@@ -62,6 +65,12 @@ void patternMenu_draw()
 
     // Draw pattern selector box
     bn::sprite_ptr patternmenu_box_pattern_selected = bn::sprite_items::patternmenu_selectedpattern.create_sprite(patternmenu_selectedpattern_x, patternmenu_selectedpattern_y);
+
+    // Draw hand pointer
+    bn::sprite_ptr patternmenu_handcursor_ptr = bn::sprite_items::patternmenu_handcursor.create_sprite(patternmenu_selectedpattern_x + 18, patternmenu_selectedpattern_y - 20);
+    bn::sprite_animate_action<3> patternmenu_handcursor_action = bn::create_sprite_animate_action_forever(patternmenu_handcursor_ptr, 8, bn::sprite_items::patternmenu_handcursor.tiles_item(), 0, 1, 2);
+
+    patternmenu_handcursor_action.update();
     bn::core::update();
 }
 
