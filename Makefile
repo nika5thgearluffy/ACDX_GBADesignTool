@@ -17,7 +17,7 @@
 TARGET		    := $(notdir $(CURDIR))_mb
 BUILD		    := build
 SOURCES		    := source
-INCLUDES	    := source
+INCLUDES	    := source libs/gba-link-connection/lib
 DATA		    := data
 MUSIC		    :=
 ROMTITLE        := ACDXDESGNTOOL

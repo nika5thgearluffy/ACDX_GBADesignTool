@@ -80,7 +80,7 @@ void patternMenu_update()
     patternMenu_start();
 
     // Move the overlay
-    overlay_movement_leftTop = overlay_movement_leftTop - 0.50;
+    overlay_movement_leftTop = overlay_movement_leftTop - 0.25;
 
     // Draw the menu
     patternMenu_draw();
