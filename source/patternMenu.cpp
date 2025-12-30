@@ -21,9 +21,6 @@
 #include "bn_sprite_tiles.h"
 #include "bn_sprite_tiles_item.h"
 
-#include "bn_sprite_items_patternmenu_handcursor.h"
-#include "bn_sprite_items_patternmenu_selectedpattern.h"
-
 #include "bn_audio.h"
 #include "bn_music.h"
 #include "bn_music_items.h"
@@ -33,28 +30,21 @@
 
 #include "bn_keypad.h"
 
-static float overlay_movement_leftTop = 0;
+float overlay_movement_leftTop = 0;
 static int patternMenu_hasStarted = false;
 
-static int patternmenu_selectedpattern_x = 42;
-static int patternmenu_selectedpattern_y = 42;
+int patternmenu_selectedpattern_x = 42;
+int patternmenu_selectedpattern_y = 42;
 
 void patternMenu_start()
 {
-    if (!patternMenu_hasStarted)
-    {
-        /*if (bn::music::playing_item()->bn::music_items::pattern_editor)
-        {
-            bn::music_items::pattern_editor.stop();
-        }*/
-        bn::music_items::main_menu.play();
-    }
+    bn::music_items::main_menu.play();
     patternMenu_hasStarted = true;
 }
 
 void patternMenu_draw()
 {
-    // Set the pattern menu overlay color
+     // Set the pattern menu overlay color
     bn::bg_palettes::set_transparent_color(DesignTool_ColorSwatch(173, 189, 255));
 
     // Draw pattern menu overlay!
@@ -66,23 +56,23 @@ void patternMenu_draw()
     // Draw pattern selector box
     bn::sprite_ptr patternmenu_box_pattern_selected = bn::sprite_items::patternmenu_selectedpattern.create_sprite(patternmenu_selectedpattern_x, patternmenu_selectedpattern_y);
 
-    // Draw hand pointer
+    // Draw the hand pointer
     bn::sprite_ptr patternmenu_handcursor_ptr = bn::sprite_items::patternmenu_handcursor.create_sprite(patternmenu_selectedpattern_x + 18, patternmenu_selectedpattern_y - 20);
     bn::sprite_animate_action<3> patternmenu_handcursor_action = bn::create_sprite_animate_action_forever(patternmenu_handcursor_ptr, 8, bn::sprite_items::patternmenu_handcursor.tiles_item(), 0, 1, 2);
 
+    // Update the sprite animating on the hand pointer
     patternmenu_handcursor_action.update();
+
+    // Update butano
     bn::core::update();
 }
 
 void patternMenu_update()
 {
-    // Starting function
-    patternMenu_start();
-
     // Move the overlay
     overlay_movement_leftTop = overlay_movement_leftTop - 0.25;
 
-    // Draw the menu
+    // Draw most of the menu
     patternMenu_draw();
 
     if (!DesignTool_Menu_IsAnimating)

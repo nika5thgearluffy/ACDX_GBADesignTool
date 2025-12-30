@@ -37,6 +37,7 @@ static int DesignTool_Menu_Pattern_Max = 8;
 /*
     Current menu.
 
+    0 = Title Screen
     1 = Design Display Menu
     2 = Pattern Editor
     3 = Name Pattern

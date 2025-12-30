@@ -20,6 +20,9 @@ int main(void)
     // Start the GameCube link connection
     gameCubeLink_start();
 
+    // Starting function
+    patternMenu_start();
+
 	while(true)
     {
         // Update the link status
